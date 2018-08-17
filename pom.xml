@@ -93,6 +93,7 @@
             <artifactId>slf4j-maven-plugin-log</artifactId>
             <version>1.0.0</version>
         </dependency>
+
     </dependencies>
 
 </project>

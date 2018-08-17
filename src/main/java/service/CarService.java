@@ -1,7 +1,7 @@
 package service;
 
 import model.Car;
-import model.hiberDAO.impl.CarDao;
+import model.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,30 +14,34 @@ import java.util.List;
 public class CarService implements IService<Car> {
 
     @Autowired
-    CarDao dao;
+    CarRepository repository;
 
     @Override
     public int create(Car entity) {
-        return dao.create(entity);
+        return repository.save(entity).getId();
     }
 
     @Override
     public Car findById(int id) {
-        return dao.findById(id);
+        return repository.findById(id).orElse(null);
     }
 
     @Override
     public List<Car> findAll() {
-        return dao.findAll();
+        return repository.findAll();
     }
 
     @Override
     public void update(Car entity) {
-        dao.update(entity);
+        Car carToUpdate = repository.getOne(entity.getId());
+        carToUpdate.setMechanic(entity.getMechanic());
+        carToUpdate.setModel(entity.getModel());
+        carToUpdate.setOwner(entity.getOwner());
+        repository.save(carToUpdate);
     }
 
     @Override
     public void delete(int id) {
-        dao.delete(id);
+        repository.deleteById(id);
     }
 }

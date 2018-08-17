@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import service.UserService;
-import service.service_spring_data.UserServiceRepo;
 
 /**
  * Created by Vladyslava_Hubenko on 8/15/2018.
@@ -17,7 +16,7 @@ import service.service_spring_data.UserServiceRepo;
 public class MainController {
 
     @Autowired
-    UserService service;
+    private UserService service;
 
     @RequestMapping(value = "users", method = RequestMethod.GET)
     public ModelAndView usersList(){
@@ -41,9 +40,4 @@ public class MainController {
         mav.addObject("user", service.findById(id));
         return mav;
     }
-
-
-
-
-
 }
