@@ -1,12 +1,15 @@
 package controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import service.UserService;
+
+import java.util.Locale;
 
 /**
  * Created by Vladyslava_Hubenko on 8/15/2018.
@@ -22,6 +25,8 @@ public class MainController {
     public ModelAndView usersList(){
         ModelAndView mav = new ModelAndView("list_of_users");
         mav.addObject("userList", service.findAll());
+        Locale currentLocale = LocaleContextHolder.getLocale();
+        mav.addObject("locale", currentLocale);
         return mav;
     }
 

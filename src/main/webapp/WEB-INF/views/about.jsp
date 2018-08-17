@@ -8,12 +8,12 @@
 <%@ include file="/WEB-INF/valid.jsp" %>
 <html>
 <head>
-    <title>User info</title>
+    <title><spring:message code="user.info"/></title>
 </head>
 <body>
 
 <h3>${user.name} ${user.surname}</h3>
-<h2>Cars</h2>
+<h2><spring:message code="cars"/></h2>
 <br/>
 <c:forEach var="car" items="${user.cars}">
     <tr>

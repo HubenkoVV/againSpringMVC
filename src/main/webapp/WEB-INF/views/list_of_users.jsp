@@ -8,14 +8,15 @@
 <%@ include file="/WEB-INF/valid.jsp" %>
 <html>
 <head>
-    <title>List Of Users</title>
+    <title><spring:message code="list.users"/></title>
 </head>
 <body>
 
 <table style="text-align: center;" border="1px" cellpadding="0" cellspacing="0" >
     <thead>
     <tr>
-        <th width="25px">id</th><th width="100px">name</th><th width="100px">surname</th><th width="50px">role</th><th width="50px"></th>
+        <th width="25px">id</th><th width="100px"><spring:message code="name"/></th><th width="100px"><spring:message code="surname"/></th>
+        <th width="50px"><spring:message code="role"/></th><th width="50px"></th>
     </tr>
     </thead>
     <tbody>
@@ -26,13 +27,16 @@
             <td>${user.surname}</td>
             <td>${user.role}</td>
             <td>
-                <a href="${pageContext.request.contextPath}/users/about/${user.id}">Details</a><br/>
-                <a href="${pageContext.request.contextPath}/users/delete/${user.id}">Delete</a><br/>
+                <a href="${pageContext.request.contextPath}/users/about/${user.id}"><spring:message code="details"/></a><br/>
+                <a href="${pageContext.request.contextPath}/users/delete/${user.id}"><spring:message code="delete"/></a><br/>
             </td>
         </tr>
     </c:forEach>
     </tbody>
 </table>
+
+Language : <a href="?lang=en">English</a> | <a href="?lang=de">Deutsch</a>
+Current Locale : ${pageContext.response.locale} / ${locale}
 
 </body>
 </html>
