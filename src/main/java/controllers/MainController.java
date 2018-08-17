@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import service.UserService;
 
@@ -45,4 +46,16 @@ public class MainController {
         mav.addObject("user", service.findById(id));
         return mav;
     }
+
+    @RequestMapping(value = "users/find", method = RequestMethod.POST)
+    public ModelAndView search(@RequestParam("search_name") String search_name){
+        ModelAndView mav = new ModelAndView("list_of_users");
+        mav.addObject("userList", service.findAll());
+        Locale currentLocale = LocaleContextHolder.getLocale();
+        mav.addObject("locale", currentLocale);
+        mav.addObject("userFoundList", service.getByName(search_name));
+        return mav;
+    }
+
+
 }

@@ -35,8 +35,37 @@
     </tbody>
 </table>
 
+<hr/>
 Language : <a href="?lang=en">English</a> | <a href="?lang=de">Deutsch</a>
 Current Locale : ${pageContext.response.locale} / ${locale}
+<hr/>
+
+<form method="post" action="/users/find">
+    <label for="search_name"><spring:message code="search"/></label>
+    <input type="text" id="search_name" name="search_name">
+    <input type="submit" name="find" value=<spring:message code="search"/>>
+</form>
+
+<br/>
+
+<table style="text-align: center;" border="1px" cellpadding="0" cellspacing="0" >
+    <thead>
+    <tr>
+        <th width="25px">id</th><th width="100px"><spring:message code="name"/></th><th width="100px"><spring:message code="surname"/></th>
+        <th width="50px"><spring:message code="role"/></th>
+    </tr>
+    </thead>
+    <tbody>
+    <c:forEach var="user" items="${userFoundList}">
+        <tr>
+            <td>${user.id}</td>
+            <td>${user.name}</td>
+            <td>${user.surname}</td>
+            <td>${user.role}</td>
+        </tr>
+    </c:forEach>
+    </tbody>
+</table>
 
 </body>
 </html>

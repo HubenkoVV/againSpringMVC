@@ -46,4 +46,8 @@ public class UserService implements IService<User> {
     public void delete(int id) {
         repository.deleteById(id);
     }
+
+    public List<User> getByName(String name){
+        return repository.findAllByNameIgnoreCaseContaining(name);
+    }
 }
